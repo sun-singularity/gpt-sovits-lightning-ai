@@ -1,0 +1,15 @@
+# lightning.yaml
+name: gpt-sovits-lightning
+
+ports:
+  - port: 9880
+    protocol: HTTP
+# Define the environment
+environment:
+  image: lightningai/base:latest-py3.9  # or another appropriate base image
+  setup:
+    - pip install condacolab
+    - conda install -y -q -c pytorch -c nvidia cudatoolkit
+    - conda install -y -q -c conda-forge gcc gxx ffmpeg cmake
+    - git clone https://github.com/sun-singularity/GPT-SoVITS /teamspace/studios/this_studio/gpt-sovits-test/GPT-SoVITS
+    - pip install -r /GPT-SoVITS/requirements.txt
